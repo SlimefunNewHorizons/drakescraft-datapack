@@ -153,6 +153,23 @@ The patcher changes only those six NBT pool values, preserves every other ZIP
 entry, checks the expected correction count, scans for stale namespaces, and
 runs a ZIP integrity test before reporting success.
 
+### Dungeons and Taverns chart watchdog protection
+
+The upstream chart mechanic runs `minecraft:exploration_map` synchronously when
+a player unfolds a chart. Its default 50-chunk search caused 10–40 second
+watchdog stalls in production. Build a reversible server-safe archive with an
+8-chunk search bound:
+
+```bash
+.venv-tools/bin/python scripts/patch_dungeons_taverns_maps.py \
+  "Dungeons and Taverns v5.1.0.zip" \
+  "Dungeons and Taverns v5.1.0.fixed-maps.zip"
+```
+
+The patcher touches only `nova_structures` map loot tables, preserves chart
+behavior for nearby structures, validates every affected JSON document, tests
+ZIP integrity, and refuses to publish an archive when no expected target exists.
+
 ---
 
 <div align="center">

@@ -1,0 +1,224 @@
+{
+  "type": "minecraft:multi_action",
+  "title": {
+    "text": "Comandos de SkyBlock",
+    "bold": true,
+    "color": "aqua"
+  },
+  "body": {
+    "type": "minecraft:plain_message",
+    "width": 360,
+    "contents": {
+      "text": "Los mismos comandos existen en OneBlock cambiando /is por /ob. El tamano de tu isla depende de tu rango. Escribe arriba el jugador para invitar o expulsar."
+    }
+  },
+  "inputs": [
+    {
+      "type": "minecraft:text",
+      "key": "target_player",
+      "label": {
+        "text": "Jugador:"
+      }
+    }
+  ],
+  "actions": [
+    {
+      "label": {
+        "text": "Ir a tu isla"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/is go"
+      }
+    },
+    {
+      "label": {
+        "text": "Ver tus puntos guardados"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/is homes"
+      }
+    },
+    {
+      "label": {
+        "text": "Guardar este punto"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/is sethome"
+      }
+    },
+    {
+      "label": {
+        "text": "Informacion de la isla"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/is info"
+      }
+    },
+    {
+      "label": {
+        "text": "Reglas de dentro"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/is settings"
+      }
+    },
+    {
+      "label": {
+        "text": "Cerrar o abrir la isla"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/is lock"
+      }
+    },
+    {
+      "label": {
+        "text": "Nivel de tu isla"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/is level"
+      }
+    },
+    {
+      "label": {
+        "text": "Ranking de islas"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/is top"
+      }
+    },
+    {
+      "label": {
+        "text": "Valor del bloque en mano"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/is value"
+      }
+    },
+    {
+      "label": {
+        "text": "Desglose del nivel"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/is detail"
+      }
+    },
+    {
+      "label": {
+        "text": "Generadores de piedra"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/is generator"
+      }
+    },
+    {
+      "label": {
+        "text": "Tu equipo"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/is team"
+      }
+    },
+    {
+      "label": {
+        "text": "Islas vecinas"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/is near"
+      }
+    },
+    {
+      "label": {
+        "text": "Ir al spawn"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/is spawn"
+      }
+    },
+    {
+      "label": {
+        "text": "Idioma de los mensajes"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/is language"
+      }
+    },
+    {
+      "label": {
+        "text": "Invitar a alguien"
+      },
+      "action": {
+        "type": "minecraft:dynamic/run_command",
+        "template": "is team invite $(target_player)"
+      }
+    },
+    {
+      "label": {
+        "text": "Aceptar invitacion"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/is team accept"
+      }
+    },
+    {
+      "label": {
+        "text": "Salir del equipo"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/is team leave"
+      }
+    },
+    {
+      "label": {
+        "text": "Echar a alguien de la isla"
+      },
+      "action": {
+        "type": "minecraft:dynamic/run_command",
+        "template": "is expel $(target_player)"
+      }
+    },
+    {
+      "label": {
+        "text": "Prohibirle la entrada"
+      },
+      "action": {
+        "type": "minecraft:dynamic/run_command",
+        "template": "is ban $(target_player)"
+      }
+    },
+    {
+      "label": {
+        "text": "Levantar la prohibicion"
+      },
+      "action": {
+        "type": "minecraft:dynamic/run_command",
+        "template": "is unban $(target_player)"
+      }
+    },
+    {
+      "label": {
+        "text": "Volver a modalidades"
+      },
+      "action": {
+        "type": "minecraft:show_dialog",
+        "dialog": "drakescraft:modalidades_menu"
+      }
+    }
+  ]
+}

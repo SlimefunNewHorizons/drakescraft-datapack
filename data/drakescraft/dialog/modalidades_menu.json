@@ -51,11 +51,29 @@
     },
     {
       "label": {
+        "text": "Comandos de SkyBlock"
+      },
+      "action": {
+        "type": "minecraft:show_dialog",
+        "dialog": "drakescraft:isla_sky_menu"
+      }
+    },
+    {
+      "label": {
         "text": "Tu isla de OneBlock (/ob)"
       },
       "action": {
         "type": "minecraft:run_command",
         "command": "/ob"
+      }
+    },
+    {
+      "label": {
+        "text": "Comandos de OneBlock"
+      },
+      "action": {
+        "type": "minecraft:show_dialog",
+        "dialog": "drakescraft:isla_ob_menu"
       }
     },
     {

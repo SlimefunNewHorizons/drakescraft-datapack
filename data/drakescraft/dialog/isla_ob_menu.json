@@ -1,0 +1,260 @@
+{
+  "type": "minecraft:multi_action",
+  "title": {
+    "text": "Comandos de OneBlock",
+    "bold": true,
+    "color": "aqua"
+  },
+  "body": {
+    "type": "minecraft:plain_message",
+    "width": 360,
+    "contents": {
+      "text": "Los mismos comandos que en SkyBlock, mas los de fase, que solo existen aqui. Escribe arriba el jugador para invitar o expulsar."
+    }
+  },
+  "inputs": [
+    {
+      "type": "minecraft:text",
+      "key": "target_player",
+      "label": {
+        "text": "Jugador:"
+      }
+    }
+  ],
+  "actions": [
+    {
+      "label": {
+        "text": "Ir a tu isla"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/ob go"
+      }
+    },
+    {
+      "label": {
+        "text": "Ver tus puntos guardados"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/ob homes"
+      }
+    },
+    {
+      "label": {
+        "text": "Guardar este punto"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/ob sethome"
+      }
+    },
+    {
+      "label": {
+        "text": "Informacion de la isla"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/ob info"
+      }
+    },
+    {
+      "label": {
+        "text": "Reglas de dentro"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/ob settings"
+      }
+    },
+    {
+      "label": {
+        "text": "Cerrar o abrir la isla"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/ob lock"
+      }
+    },
+    {
+      "label": {
+        "text": "Nivel de tu isla"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/ob level"
+      }
+    },
+    {
+      "label": {
+        "text": "Ranking de islas"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/ob top"
+      }
+    },
+    {
+      "label": {
+        "text": "Valor del bloque en mano"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/ob value"
+      }
+    },
+    {
+      "label": {
+        "text": "Desglose del nivel"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/ob detail"
+      }
+    },
+    {
+      "label": {
+        "text": "Generadores de piedra"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/ob generator"
+      }
+    },
+    {
+      "label": {
+        "text": "Tu equipo"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/ob team"
+      }
+    },
+    {
+      "label": {
+        "text": "Islas vecinas"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/ob near"
+      }
+    },
+    {
+      "label": {
+        "text": "Ir al spawn"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/ob spawn"
+      }
+    },
+    {
+      "label": {
+        "text": "Idioma de los mensajes"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/ob language"
+      }
+    },
+    {
+      "label": {
+        "text": "Invitar a alguien"
+      },
+      "action": {
+        "type": "minecraft:dynamic/run_command",
+        "template": "ob team invite $(target_player)"
+      }
+    },
+    {
+      "label": {
+        "text": "Aceptar invitacion"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/ob team accept"
+      }
+    },
+    {
+      "label": {
+        "text": "Salir del equipo"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/ob team leave"
+      }
+    },
+    {
+      "label": {
+        "text": "Echar a alguien de la isla"
+      },
+      "action": {
+        "type": "minecraft:dynamic/run_command",
+        "template": "ob expel $(target_player)"
+      }
+    },
+    {
+      "label": {
+        "text": "Prohibirle la entrada"
+      },
+      "action": {
+        "type": "minecraft:dynamic/run_command",
+        "template": "ob ban $(target_player)"
+      }
+    },
+    {
+      "label": {
+        "text": "Levantar la prohibicion"
+      },
+      "action": {
+        "type": "minecraft:dynamic/run_command",
+        "template": "ob unban $(target_player)"
+      }
+    },
+    {
+      "label": {
+        "text": "Bloques rotos y fase (/ob count)"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/ob count"
+      }
+    },
+    {
+      "label": {
+        "text": "Ver todas las fases (/ob phases)"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/ob phases"
+      }
+    },
+    {
+      "label": {
+        "text": "Recuperar el bloque perdido"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/ob respawnblock"
+      }
+    },
+    {
+      "label": {
+        "text": "Contador en pantalla (/ob bossbar)"
+      },
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/ob bossbar"
+      }
+    },
+    {
+      "label": {
+        "text": "Volver a modalidades"
+      },
+      "action": {
+        "type": "minecraft:show_dialog",
+        "dialog": "drakescraft:modalidades_menu"
+      }
+    }
+  ]
+}

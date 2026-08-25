@@ -27,6 +27,52 @@ VOLVER = ("Volver al menu principal", "@main_menu")
 # El validador rechaza cualquier caracter por encima de U+2000 porque no todos los clientes lo
 # dibujan igual. Eso descarta guiones largos, comillas curvas y puntos suspensivos: aqui se usan
 # guiones normales y comillas rectas a proposito.
+# SkyBlock y OneBlock comparten los mismos subcomandos y solo cambia el prefijo del comando.
+# Se declaran una vez y se generan los dos menus a partir de aqui: si manana se anade un
+# subcomando, entra en las dos modalidades a la vez y no se pueden quedar descuadradas.
+ISLA_ACCIONES = [
+    ("Ir a tu isla", "go"),
+    ("Ver tus puntos guardados", "homes"),
+    ("Guardar este punto", "sethome"),
+    ("Informacion de la isla", "info"),
+    ("Reglas de dentro", "settings"),
+    ("Cerrar o abrir la isla", "lock"),
+    ("Nivel de tu isla", "level"),
+    ("Ranking de islas", "top"),
+    ("Valor del bloque en mano", "value"),
+    ("Desglose del nivel", "detail"),
+    ("Generadores de piedra", "generator"),
+    ("Tu equipo", "team"),
+    ("Islas vecinas", "near"),
+    ("Ir al spawn", "spawn"),
+    ("Idioma de los mensajes", "language"),
+]
+
+VOLVER_MODALIDADES = ("Volver a modalidades", "@modalidades_menu")
+
+def _acciones_isla(prefijo, extras=()):
+    """Traduce la tabla comun al prefijo de cada modalidad y anade lo propio de OneBlock."""
+    filas = [(etiqueta, "/" + prefijo + " " + sub) for etiqueta, sub in ISLA_ACCIONES]
+    filas += [
+        ("Invitar a alguien", "$" + prefijo + " team invite $(target_player)"),
+        ("Aceptar invitacion", "/" + prefijo + " team accept"),
+        ("Salir del equipo", "/" + prefijo + " team leave"),
+        ("Echar a alguien de la isla", "$" + prefijo + " expel $(target_player)"),
+        ("Prohibirle la entrada", "$" + prefijo + " ban $(target_player)"),
+        ("Levantar la prohibicion", "$" + prefijo + " unban $(target_player)"),
+    ]
+    filas += list(extras)
+    filas.append(VOLVER_MODALIDADES)
+    return filas
+
+ISLA_ACCIONES_SKY = _acciones_isla("is")
+ISLA_ACCIONES_OB = _acciones_isla("ob", extras=[
+    ("Bloques rotos y fase (/ob count)", "/ob count"),
+    ("Ver todas las fases (/ob phases)", "/ob phases"),
+    ("Recuperar el bloque perdido", "/ob respawnblock"),
+    ("Contador en pantalla (/ob bossbar)", "/ob bossbar"),
+])
+
 MENUS: dict[str, dict] = {
     "main_menu": {
         "title": "DRAKESCRAFT - Menu principal",
@@ -107,7 +153,9 @@ MENUS: dict[str, dict] = {
             ("Menu de modalidades (/modalidades)", "/modalidades"),
             ("Ir a Slimefun (/survival)", "/survival"),
             ("Tu isla de SkyBlock (/island)", "/island"),
+            ("Comandos de SkyBlock", "@isla_sky_menu"),
             ("Tu isla de OneBlock (/ob)", "/ob"),
+            ("Comandos de OneBlock", "@isla_ob_menu"),
             ("Punto aleatorio (/rtp)", "/rtp"),
             ("Warps publicos (/warps)", "/warps"),
             ("Ir a un warp (/warp)", "$warp $(warp_name)"),
@@ -316,6 +364,26 @@ MENUS: dict[str, dict] = {
             ("Pedir reinicio avisado (/restart30)", "/restart30"),
             VOLVER,
         ],
+    },
+    "isla_sky_menu": {
+        "title": "Comandos de SkyBlock",
+        "color": "aqua",
+        "body": "Los mismos comandos existen en OneBlock cambiando /is por /ob. El tamano de tu "
+                "isla depende de tu rango. Escribe arriba el jugador para invitar o expulsar.",
+        "inputs": [
+            ("target_player", "Jugador:"),
+        ],
+        "actions": ISLA_ACCIONES_SKY,
+    },
+    "isla_ob_menu": {
+        "title": "Comandos de OneBlock",
+        "color": "aqua",
+        "body": "Los mismos comandos que en SkyBlock, mas los de fase, que solo existen aqui. "
+                "Escribe arriba el jugador para invitar o expulsar.",
+        "inputs": [
+            ("target_player", "Jugador:"),
+        ],
+        "actions": ISLA_ACCIONES_OB,
     },
     "rank_menu": {
         "title": "Beneficios de rango",

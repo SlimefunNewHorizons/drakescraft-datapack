@@ -8,7 +8,7 @@
 
 [![Minecraft](https://img.shields.io/badge/Minecraft-1.21.11-00F2FE?style=for-the-badge&logo=minecraft&logoColor=white)](https://drakescraft.cl)
 [![Purpur](https://img.shields.io/badge/Server-Purpur_1.21.11-8B5CF6?style=for-the-badge&logo=openjdk&logoColor=white)](https://purpurmc.org)
-[![Type](https://img.shields.io/badge/Type-100%25_Server--Side_DataPack-F5C542?style=for-the-badge)](https://github.com/DrakesCraft-Labs)
+[![Type](https://img.shields.io/badge/Type-100%25_Server--Side_DataPack-F5C542?style=for-the-badge)](https://github.com/SlimefunNewHorizons)
 
 </div>
 
@@ -182,7 +182,7 @@ ZIP integrity, and refuses to publish an archive when no expected target exists.
 
 ## 📄 License & Upstream Attribution
 
-This project is a sovereign fork maintained by [**JackStar6677-1**](https://github.com/JackStar6677-1) under [**DrakesCraft Labs**](https://github.com/DrakesCraft-Labs).
+This project is a sovereign fork maintained by [**JackStar6677-1**](https://github.com/JackStar6677-1) under [**DrakesCraft Labs**](https://github.com/SlimefunNewHorizons).
 
 - **Original Project:** Created by the upstream authors and the open-source community.
 - **DrakesCraft Optimizations:** Modernized for Paper/Purpur 1.21.11+, Java 21, high concurrency, asynchronous safety, and exploit/duplication prevention.

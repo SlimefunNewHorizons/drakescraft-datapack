@@ -1,0 +1,78 @@
+{
+  "type": "minecraft:multi_action",
+  "title": {
+    "text": "Primeros pasos en Slimefun",
+    "bold": true,
+    "color": "aqua"
+  },
+  "columns": 1,
+  "pause": false,
+  "body": {
+    "type": "minecraft:plain_message",
+    "width": 360,
+    "contents": {
+      "text": "1) Abre la guia con el primer boton: ahi estan todos los objetos y recetas. 2) Escribe lo que quieras fabricar (por ejemplo cesped o una maquina) y pulsa Buscar: la guia te dice donde y como se hace. 3) Tus logros te marcan que investigar despues. 4) Si te atascas, llama al staff conectado."
+    }
+  },
+  "inputs": [
+    {
+      "type": "minecraft:text",
+      "key": "search_text",
+      "label": {
+        "text": "Que quieres fabricar:"
+      }
+    }
+  ],
+  "actions": [
+    {
+      "label": {
+        "text": "Abrir la guia de Slimefun (/sf guide)"
+      },
+      "width": 330,
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/sf guide"
+      }
+    },
+    {
+      "label": {
+        "text": "Buscar un objeto (/sf search)"
+      },
+      "width": 330,
+      "action": {
+        "type": "minecraft:dynamic/run_command",
+        "template": "sf search $(search_text)"
+      }
+    },
+    {
+      "label": {
+        "text": "Ver tus logros (/sfa)"
+      },
+      "width": 330,
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/sfa"
+      }
+    },
+    {
+      "label": {
+        "text": "Llamar al staff (/helpop)"
+      },
+      "width": 330,
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/helpop"
+      }
+    },
+    {
+      "label": {
+        "text": "Volver a la bienvenida"
+      },
+      "width": 330,
+      "action": {
+        "type": "minecraft:show_dialog",
+        "dialog": "drakescraft:welcome_es"
+      }
+    }
+  ]
+}

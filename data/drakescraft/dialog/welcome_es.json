@@ -1,0 +1,83 @@
+{
+  "type": "minecraft:multi_action",
+  "title": {
+    "text": "Bienvenido a DrakesCraft",
+    "bold": true,
+    "color": "gold"
+  },
+  "external_title": {
+    "text": "DrakesCraft",
+    "color": "gold"
+  },
+  "columns": 1,
+  "pause": false,
+  "body": {
+    "type": "minecraft:plain_message",
+    "width": 360,
+    "contents": {
+      "text": "Elige a donde ir. Es una sola cuenta: tu rango y tus Dragmas valen en todas las modalidades y el inventario de cada una es aparte. Si dudas, empieza por Slimefun. Para volver a ver este menu escribe /bienvenida."
+    }
+  },
+  "actions": [
+    {
+      "label": {
+        "text": "SLIMEFUN - Maquinas, magia y jefes (recomendado)"
+      },
+      "width": 330,
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/survival"
+      }
+    },
+    {
+      "label": {
+        "text": "SKYBLOCK - Tu isla propia desde cero"
+      },
+      "width": 330,
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/island"
+      }
+    },
+    {
+      "label": {
+        "text": "ONEBLOCK - Un bloque que evoluciona"
+      },
+      "width": 330,
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/ob"
+      }
+    },
+    {
+      "label": {
+        "text": "Primeros pasos en Slimefun"
+      },
+      "width": 330,
+      "action": {
+        "type": "minecraft:show_dialog",
+        "dialog": "drakescraft:slimefun_inicio_es"
+      }
+    },
+    {
+      "label": {
+        "text": "Todos los comandos del servidor"
+      },
+      "width": 330,
+      "action": {
+        "type": "minecraft:show_dialog",
+        "dialog": "drakescraft:main_menu"
+      }
+    },
+    {
+      "label": {
+        "text": "Unirte al Discord (/discord)"
+      },
+      "width": 330,
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/discord"
+      }
+    }
+  ]
+}

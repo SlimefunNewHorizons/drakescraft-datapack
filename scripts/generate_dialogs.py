@@ -361,6 +361,87 @@ MENUS: dict[str, dict] = {
             VOLVER,
         ],
     },
+    # --- Bienvenida: la abre Odysseia solo a los jugadores nuevos (y con /bienvenida) ---------
+    # Dos idiomas: Odysseia elige uno segun el idioma del cliente. Los botones son anchos a
+    # proposito: es lo primero que ve alguien que nunca ha entrado y no debe poder fallar.
+    "welcome_es": {
+        "title": "Bienvenido a DrakesCraft",
+        "color": "gold",
+        "external_title": "DrakesCraft",
+        "button_width": 330,
+        "columns": 1,
+        "body": "Elige a donde ir. Es una sola cuenta: tu rango y tus Dragmas valen en todas las "
+                "modalidades y el inventario de cada una es aparte. Si dudas, empieza por "
+                "Slimefun. Para volver a ver este menu escribe /bienvenida.",
+        "actions": [
+            ("SLIMEFUN - Maquinas, magia y jefes (recomendado)", "/survival"),
+            ("SKYBLOCK - Tu isla propia desde cero", "/island"),
+            ("ONEBLOCK - Un bloque que evoluciona", "/ob"),
+            ("Primeros pasos en Slimefun", "@slimefun_inicio_es"),
+            ("Todos los comandos del servidor", "@main_menu"),
+            ("Unirte al Discord (/discord)", "/discord"),
+        ],
+    },
+    "welcome_en": {
+        "title": "Welcome to DrakesCraft",
+        "color": "gold",
+        "external_title": "DrakesCraft",
+        "button_width": 330,
+        "columns": 1,
+        "body": "Pick where to go. It is a single account: your rank and Dragmas work in every "
+                "mode, and each mode keeps its own inventory. If unsure, start with Slimefun. "
+                "To see this menu again type /bienvenida.",
+        "actions": [
+            ("SLIMEFUN - Machines, magic and bosses (recommended)", "/survival"),
+            ("SKYBLOCK - Your own island from scratch", "/island"),
+            ("ONEBLOCK - One block that evolves", "/ob"),
+            ("First steps in Slimefun", "@slimefun_inicio_en"),
+            ("All server commands", "@main_menu"),
+            ("Join our Discord (/discord)", "/discord"),
+        ],
+    },
+    "slimefun_inicio_es": {
+        "title": "Primeros pasos en Slimefun",
+        "color": "aqua",
+        "button_width": 330,
+        "columns": 1,
+        "body": "1) Abre la guia con el primer boton: ahi estan todos los objetos y recetas. "
+                "2) Escribe lo que quieras fabricar (por ejemplo cesped o una maquina) y pulsa "
+                "Buscar: la guia te dice donde y como se hace. "
+                "3) Tus logros te marcan que investigar despues. "
+                "4) Si te atascas, llama al staff conectado.",
+        "inputs": [
+            ("search_text", "Que quieres fabricar:"),
+        ],
+        "actions": [
+            ("Abrir la guia de Slimefun (/sf guide)", "/sf guide"),
+            ("Buscar un objeto (/sf search)", "$sf search $(search_text)"),
+            ("Ver tus logros (/sfa)", "/sfa"),
+            ("Llamar al staff (/helpop)", "/helpop"),
+            ("Volver a la bienvenida", "@welcome_es"),
+        ],
+    },
+    "slimefun_inicio_en": {
+        "title": "First steps in Slimefun",
+        "color": "aqua",
+        "button_width": 330,
+        "columns": 1,
+        "body": "1) Open the guide with the first button: every item and recipe is there. "
+                "2) Type what you want to craft (for example grass or a machine) and press "
+                "Search: the guide tells you where and how it is made. "
+                "3) Your advancements show what to research next. "
+                "4) If you get stuck, call the staff that is online.",
+        "inputs": [
+            ("search_text", "What do you want to craft:"),
+        ],
+        "actions": [
+            ("Open the Slimefun guide (/sf guide)", "/sf guide"),
+            ("Search an item (/sf search)", "$sf search $(search_text)"),
+            ("See your advancements (/sfa)", "/sfa"),
+            ("Call the staff (/helpop)", "/helpop"),
+            ("Back to the welcome menu", "@welcome_en"),
+        ],
+    },
 }
 
 
@@ -401,10 +482,14 @@ def construir_dialogo(definicion: dict) -> dict:
             for clave, etiqueta in definicion["inputs"]
         ]
 
-    dialogo["actions"] = [
-        {"label": {"text": etiqueta}, "action": construir_accion(destino)}
-        for etiqueta, destino in definicion["actions"]
-    ]
+    ancho = definicion.get("button_width")
+    dialogo["actions"] = []
+    for etiqueta, destino in definicion["actions"]:
+        boton: dict = {"label": {"text": etiqueta}}
+        if ancho:
+            boton["width"] = ancho
+        boton["action"] = construir_accion(destino)
+        dialogo["actions"].append(boton)
     return dialogo
 
 

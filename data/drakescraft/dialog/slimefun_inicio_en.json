@@ -1,0 +1,78 @@
+{
+  "type": "minecraft:multi_action",
+  "title": {
+    "text": "First steps in Slimefun",
+    "bold": true,
+    "color": "aqua"
+  },
+  "columns": 1,
+  "pause": false,
+  "body": {
+    "type": "minecraft:plain_message",
+    "width": 360,
+    "contents": {
+      "text": "1) Open the guide with the first button: every item and recipe is there. 2) Type what you want to craft (for example grass or a machine) and press Search: the guide tells you where and how it is made. 3) Your advancements show what to research next. 4) If you get stuck, call the staff that is online."
+    }
+  },
+  "inputs": [
+    {
+      "type": "minecraft:text",
+      "key": "search_text",
+      "label": {
+        "text": "What do you want to craft:"
+      }
+    }
+  ],
+  "actions": [
+    {
+      "label": {
+        "text": "Open the Slimefun guide (/sf guide)"
+      },
+      "width": 330,
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/sf guide"
+      }
+    },
+    {
+      "label": {
+        "text": "Search an item (/sf search)"
+      },
+      "width": 330,
+      "action": {
+        "type": "minecraft:dynamic/run_command",
+        "template": "sf search $(search_text)"
+      }
+    },
+    {
+      "label": {
+        "text": "See your advancements (/sfa)"
+      },
+      "width": 330,
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/sfa"
+      }
+    },
+    {
+      "label": {
+        "text": "Call the staff (/helpop)"
+      },
+      "width": 330,
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "/helpop"
+      }
+    },
+    {
+      "label": {
+        "text": "Back to the welcome menu"
+      },
+      "width": 330,
+      "action": {
+        "type": "minecraft:show_dialog",
+        "dialog": "drakescraft:welcome_en"
+      }
+    }
+  ]
+}

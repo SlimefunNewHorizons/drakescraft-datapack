@@ -377,6 +377,7 @@ MENUS: dict[str, dict] = {
             ("SLIMEFUN - Maquinas, magia y jefes (recomendado)", "/survival"),
             ("SKYBLOCK - Tu isla propia desde cero", "/island"),
             ("ONEBLOCK - Un bloque que evoluciona", "/ob"),
+            ("Guia completa en la web (mas informacion)", "!https://web.drakescraft.cl/guia.html"),
             ("Primeros pasos en Slimefun", "@slimefun_inicio_es"),
             ("Todos los comandos del servidor", "@main_menu"),
             ("Unirte al Discord (/discord)", "/discord"),
@@ -395,6 +396,7 @@ MENUS: dict[str, dict] = {
             ("SLIMEFUN - Machines, magic and bosses (recommended)", "/survival"),
             ("SKYBLOCK - Your own island from scratch", "/island"),
             ("ONEBLOCK - One block that evolves", "/ob"),
+            ("Full guide on the website (more info)", "!https://web.drakescraft.cl/guia.html"),
             ("First steps in Slimefun", "@slimefun_inicio_en"),
             ("All server commands", "@main_menu"),
             ("Join our Discord (/discord)", "/discord"),
@@ -416,6 +418,7 @@ MENUS: dict[str, dict] = {
         "actions": [
             ("Abrir la guia de Slimefun (/sf guide)", "/sf guide"),
             ("Buscar un objeto (/sf search)", "$sf search $(search_text)"),
+            ("Guia de Slimefun en la web", "!https://web.drakescraft.cl/guia-slimefun.html"),
             ("Ver tus logros (/sfa)", "/sfa"),
             ("Llamar al staff (/helpop)", "/helpop"),
             ("Volver a la bienvenida", "@welcome_es"),
@@ -437,6 +440,7 @@ MENUS: dict[str, dict] = {
         "actions": [
             ("Open the Slimefun guide (/sf guide)", "/sf guide"),
             ("Search an item (/sf search)", "$sf search $(search_text)"),
+            ("Slimefun guide on the website", "!https://web.drakescraft.cl/guia-slimefun.html"),
             ("See your advancements (/sfa)", "/sfa"),
             ("Call the staff (/helpop)", "/helpop"),
             ("Back to the welcome menu", "@welcome_en"),
@@ -448,11 +452,14 @@ MENUS: dict[str, dict] = {
 def construir_accion(destino: str) -> dict:
     """Traduce la forma corta de la tabla al objeto que espera el cliente.
 
-    Tres prefijos: @ es otro dialogo, $ es un comando con huecos que rellena el jugador y una
-    barra normal es un comando fijo.
+    Cuatro prefijos: @ es otro dialogo, $ es un comando con huecos que rellena el jugador, ! es
+    un enlace web (el cliente pide confirmar antes de abrirlo) y una barra normal es un comando
+    fijo.
     """
     if destino.startswith("@"):
         return {"type": "minecraft:show_dialog", "dialog": f"drakescraft:{destino[1:]}"}
+    if destino.startswith("!"):
+        return {"type": "minecraft:open_url", "url": destino[1:]}
     if destino.startswith("$"):
         return {"type": "minecraft:dynamic/run_command", "template": destino[1:]}
     return {"type": "minecraft:run_command", "command": destino}

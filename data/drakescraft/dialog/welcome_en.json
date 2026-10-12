@@ -51,6 +51,16 @@
     },
     {
       "label": {
+        "text": "Full guide on the website (more info)"
+      },
+      "width": 330,
+      "action": {
+        "type": "minecraft:open_url",
+        "url": "https://web.drakescraft.cl/guia.html"
+      }
+    },
+    {
+      "label": {
         "text": "First steps in Slimefun"
       },
       "width": 330,

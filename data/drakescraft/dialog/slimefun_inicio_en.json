@@ -46,6 +46,16 @@
     },
     {
       "label": {
+        "text": "Slimefun guide on the website"
+      },
+      "width": 330,
+      "action": {
+        "type": "minecraft:open_url",
+        "url": "https://web.drakescraft.cl/guia-slimefun.html"
+      }
+    },
+    {
+      "label": {
         "text": "See your advancements (/sfa)"
       },
       "width": 330,

@@ -46,6 +46,16 @@
     },
     {
       "label": {
+        "text": "Guia de Slimefun en la web"
+      },
+      "width": 330,
+      "action": {
+        "type": "minecraft:open_url",
+        "url": "https://web.drakescraft.cl/guia-slimefun.html"
+      }
+    },
+    {
+      "label": {
         "text": "Ver tus logros (/sfa)"
       },
       "width": 330,

@@ -14,6 +14,7 @@ INPUT_KEY = re.compile(r"^[A-Za-z0-9_]+$")
 STATIC_ACTION_FIELDS = {
     "minecraft:run_command": "command",
     "minecraft:show_dialog": "dialog",
+    "minecraft:open_url": "url",
 }
 DYNAMIC_ACTION_FIELDS = {"minecraft:dynamic/run_command": "template"}
 UNSAFE_TEXT = re.compile(r"[\U00002000-\U0010FFFF]")

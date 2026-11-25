@@ -121,7 +121,7 @@ def main() -> int:
                         raise RuntimeError("Server exited before expected response")
             raise TimeoutError("Missing server response: " + needle)
 
-        failure = None
+        failures = []
         try:
             wait_for("Done (")
             for y, condition, marker in ((-65, "if", "BELOW"),
@@ -133,22 +133,26 @@ def main() -> int:
             wait_for("[Server] STELLARITY389_END", timeout=30)
             send("save-all flush")
             wait_for("Saved the game", timeout=60)
-        except (OSError, RuntimeError, TimeoutError) as error:
-            failure = str(error)
+        except (OSError, ValueError, RuntimeError, TimeoutError) as error:
+            failures.append(str(error))
         finally:
             if process.poll() is None:
-                send("stop")
+                try:
+                    send("stop")
+                except (OSError, ValueError) as error:
+                    failures.append("Shutdown command failed: " + str(error))
                 try:
                     process.wait(timeout=120)
                 except subprocess.TimeoutExpired:
-                    failure = "Shutdown timed out; process retained for investigation"
+                    failures.append("Shutdown timed out; process retained for investigation")
             if process.poll() is not None:
                 reader.join(timeout=5)
         result = summarize(lines, process.poll())
         result.update({"archive_sha256": hashlib.sha256(args.archive.read_bytes()).hexdigest(),
                        "server_jar_sha256": hashlib.sha256(args.server_jar.read_bytes()).hexdigest(),
-                       "predicate_inputs": inputs, "failure": failure})
-        result["ok"] = result["ok"] and failure is None
+                       "predicate_inputs": inputs,
+                       "failure": "; ".join(failures) if failures else None})
+        result["ok"] = result["ok"] and not failures
         (root / "result.json").write_text(json.dumps(result, indent=2) + "\n")
         print(json.dumps(result, indent=2))
         return 0 if result["ok"] else 1

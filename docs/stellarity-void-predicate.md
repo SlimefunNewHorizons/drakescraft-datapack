@@ -30,6 +30,12 @@ retains runtime evidence. A shutdown timeout leaves the process for investigatio
 instead of killing it during a save. After a clean shutdown, remove only the
 disposable directory when its evidence has been archived.
 
+If the command pipe breaks or is already closed, the probe still waits for the
+child process and writes `result.json`. The `failure` field preserves the original
+command error and any shutdown-command or timeout errors. A failed shutdown
+command always fails the probe, even if all predicate checks passed and the child
+later exits with code 0. The probe never terminates or kills a child during a save.
+
 Measured on 2026-11-25: Paper 26.2 build 133 / Java 25 started in 29.522 seconds,
 passed all three boundary checks, saved and exited with code 0. There were zero
 ERROR entries and two WARN entries advising that this Paper build is outdated;

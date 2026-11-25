@@ -36,6 +36,19 @@ The **DrakesCraft DataPack** utilizes Minecraft 1.21.11's native **Dialogs** eng
 
 **Zero Client Mods Required!** Works natively out of the box for all Java Edition 1.21.11 players joining `mc.drakescraft.cl`.
 
+### Stellarity predicate regression probe
+
+`scripts/probe_stellarity_predicate.py` checks the void predicate shipped in an
+external Stellarity ZIP on a disposable Paper server. It preserves the original
+pack metadata and every version overlay, then checks the inclusive Y = -64
+boundary. It copies bootstrap dependencies into a new directory and never starts
+the supplied server home. Run `python -m unittest discover -s tests -v` for the
+archive-tooling tests; CI runs these alongside dialog validation.
+
+See [the runtime probe and its measured limits](docs/stellarity-void-predicate.md)
+for reproduction. This checks one predicate, not the complete Stellarity pack or
+its integration with other plugins.
+
 ---
 
 ## Menu Architecture

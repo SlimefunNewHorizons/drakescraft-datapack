@@ -17,6 +17,8 @@ jobs:
           python-version: "3.13"
       - name: Validate dialogs and references
         run: python scripts/validate_datapack.py
+      - name: Test archive tooling
+        run: python -m unittest discover -s tests -v
 
   seguridad:
     permissions:

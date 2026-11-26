@@ -176,6 +176,22 @@ The patcher touches only `nova_structures` map loot tables, preserves chart
 behavior for nearby structures, validates every affected JSON document, tests
 ZIP integrity, and refuses to publish an archive when no expected target exists.
 
+### Main-Thread Datapack Tick Optimizer (Purpur 26.2 / Season 2)
+
+For Season 2 (`26.2`), `scripts/build_tick_optimizer.py` builds the
+`DrakesCraft_TickOptimizer` override datapack (or `.zip`) that eliminates redundant
+per-tick full-server `@e` scans and entity-NBT serializations across **Stellarity 6.0.1**,
+**Incendium 5.5.1**, and **SVM Powers 1.86.1**:
+
+```bash
+python3 scripts/build_tick_optimizer.py DrakesCraft_TickOptimizer
+```
+
+Key optimizations:
+- **Stellarity (`stellarity:entity/main` & `#stellarity:entity_awareness_checks`)**: Adds `#stellarity:end_variant_animals` to `#stellarity:entity_awareness_checks` and filters `stellarity:entity/main` by `tag=!stellarity.aware,tag=!smithed.entity` before evaluating `predicate=stellarity:entity/end_variant_animals`, preventing per-tick full NBT serialization (`Entity.saveWithoutId`) of Overworld farm animals.
+- **Incendium (`incendium:clocks/main` & `incendium:technical/entity_id/reset`)**: Re-initializes `in.eid` on already-checked mobs directly inside `incendium:technical/entity_id/reset` when `$current.id` wraps at `32768`, removing the per-tick `@e[type=#incendium:mobs_no_player] unless score @s in.eid matches 0..32767` sweep from the 1-tick clock.
+- **SVM Powers (`svm_ep:tick` & `input:slot_change/track`)**: Narrows player-only, `item_display`-only, `marker`-only, and `svm_ep.black_hole`-only selectors, evaluates `scores={...}` before `if entity @s[predicate=!svm_ep:time_stopped]`, filters `tag @e[tag=executor] remove executor` / `tag @e[tag=same_id] remove same_id`, and gates `data get entity @s SelectedItemSlot` to `tag=svm_ep.power_user`.
+
 ---
 
 <div align="center">

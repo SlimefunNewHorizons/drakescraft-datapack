@@ -1,3 +1,6 @@
 target/
 build/
 .gradle/
+.venv-tools/
+__pycache__/
+*.pyc
